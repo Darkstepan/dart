@@ -1,4 +1,4 @@
-import 'package:flutter_web_auth/flutter_web_auth.dart';
+import 'package:flutter_web_auth_2/flutter_web_auth_2.dart';
 import 'package:http/http.dart' as http;
 import 'package:jose/jose.dart';
 
@@ -215,11 +215,10 @@ class LogtoClient {
       );
 
       final redirectUriScheme = Uri.parse(redirectUri).scheme;
-
-      final String callbackUri = await FlutterWebAuth.authenticate(
+      final String callbackUri = await FlutterWebAuth2.authenticate(
         url: signInUri.toString(),
         callbackUrlScheme: redirectUriScheme,
-        preferEphemeral: true,
+        options: const FlutterWebAuth2Options(preferEphemeral: true)
       );
 
       await _handleSignInCallback(callbackUri, redirectUri, httpClient);
